@@ -1,0 +1,21 @@
+    {% extends 'resident_punch/base.html' %}
+    {% block title %}
+    Add new Counselor
+    {% endblock %}
+    {% block content %}
+    {% if user.is_authenticated %}
+    <h1>
+        Hello Administrator
+    </h1>
+        </br></br>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-secondary"> Save</button>
+            </form>
+        </div>
+    {% else %}
+    <h1> You're not allowed here</h1>
+    {% endif %}
+    {% endblock %}

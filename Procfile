@@ -1,0 +1,1 @@
+web: gunicorn Check_In_Django.wsgi

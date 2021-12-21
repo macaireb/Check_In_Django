@@ -1,0 +1,5 @@
+    <ul>
+        {% for punch in object_list %}
+                <li> {{ punch.resident.first_name }} {{ punch.time }} </li>
+        {% endfor %}
+    </ul>

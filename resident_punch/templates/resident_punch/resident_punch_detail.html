@@ -1,0 +1,19 @@
+    {% extends 'resident_punch/base.html' %}
+    {% block title %}
+    {{resident.title_tag}}
+    {% endblock %}
+    {% block content %}
+        <h1>
+            {{resident.first_name}} {{resident.last_name}}
+            </br>floor: {{resident.floor}}
+            </br>counselor: {{resident.counselor}}
+            <a href = " {% url 'add_punch' %} " class="btn btn-secondary">Sign in or Out</a>
+        </h1>
+
+        </br></br>
+        <a href = " {% url 'home' %} " class="btn btn-secondary">Back</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'edit_resident' resident.pk %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url 'delete_resident' resident.pk %}" class="btn btn-secondary">Delete</a>
+        {% endif %}
+    {% endblock %}
