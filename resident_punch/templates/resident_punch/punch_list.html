@@ -1,5 +1,11 @@
+{% extends 'resident_punch/base.html' %}
+{% block title %}
+List of clock ins and outs
+{% endblock %}
+{% block content %}
     <ul>
         {% for punch in object_list %}
                 <li> {{ punch.resident.first_name }} {{ punch.time }} </li>
         {% endfor %}
     </ul>
+{$ endblock $}
