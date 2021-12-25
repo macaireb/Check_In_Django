@@ -19,12 +19,33 @@
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href=" {% url 'home' %}">Resident List</a>
       </li>
+     <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select your floor
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href=" {% url 'floor' 5 %}">Women's Floor</a></li>
+            <li><a class="dropdown-item" href=" {% url 'floor' 4 %}">Fourth Floor</a></li>
+            <li><a class="dropdown-item" href=" {% url 'floor' 6 %}">Sixth Floor</a></li>
+            <li><a class="dropdown-item" href=" {% url 'floor' 7 %}">Seventh Floor</a></li>
+            <li><a class="dropdown-item" href=" {% url 'floor' 8 %}">Eighth Floor</a></li>
+          </ul>
+        </li>
     {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href=" {% url 'add_resident' %}">Add Resident</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href=" {% url 'punch_list' %}">Punch List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=" {% url 'edit_profile' %}">Edit
+          {% if user.first_name %}
+          {{ user.first_name }}
+          {% else %}
+          {{ user.username }}
+          {% endif %}
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href=" {% url 'logout' %}">Logout</a>

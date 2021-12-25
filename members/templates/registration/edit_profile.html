@@ -1,0 +1,20 @@
+    {% extends 'resident_punch/base.html' %}
+    {% block title %}
+        Update Profile
+    {% endblock %}
+    {% block content %}
+<h1>
+    Update Profile
+</h1>
+    </br></br>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary"> Update Profile</button>
+            </br>
+            <a href="../password/">Click here to change your password</a>
+        </form>
+    </div>
+
+    {% endblock %}
