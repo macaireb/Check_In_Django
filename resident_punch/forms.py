@@ -29,12 +29,13 @@ class EditCounselorForm(forms.ModelForm):
 class ResidentForm(forms.ModelForm):
     class Meta:
         model = Resident
-        fields = ('first_name', 'last_name', 'counselor')
+        fields = ('first_name', 'last_name', 'floor', 'counselor')
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control',
                                                  'placeholder': 'Please Enter the Residents first name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control',
                                              'placeholder': 'Please Enter the Residents last name'}),
+            'floor': forms.Select(attrs={'class': 'form-control'}),
             'counselor': forms.Select(attrs={'class': 'form-control'}),
         }
 
@@ -60,3 +61,7 @@ class PunchForm(forms.ModelForm):
             'punch_in': forms.CheckboxInput(),
             'resident': forms.Select(attrs={'class': 'form-control'}),
         }
+
+    #def __init__(self, *args, **kwargs):
+    #    super(PunchForm, self).__init__(*args, **kwargs)
+    #    self.fields['resident'].queryset = Resident.objects.filter(pk=2)

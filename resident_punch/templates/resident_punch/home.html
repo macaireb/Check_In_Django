@@ -7,7 +7,7 @@
 <ul>
 {% for resident in object_list %}
     <li><a href="{% url 'resident_detail' resident.pk %}"> {{resident.first_name}} {{resident.last_name}} </a>
-    </br>Refer to - {{resident.counselor}}
+    </br><a href="{% url 'floor' resident.floor %}"> Floor {{resident.floor}} </a> Refer to - {{resident.counselor}}
     {% if user.is_authenticated %}
         <a href="{% url 'edit_resident' resident.pk %}" class="btn btn-secondary">Edit</a>
         <a href="{% url 'delete_resident' resident.pk %}" class="btn btn-secondary">Delete</a>

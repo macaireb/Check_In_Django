@@ -39,8 +39,15 @@ class AddResident(CreateView):
 
 class AddPunch(CreateView):
         model = Punch
-        form_class = PunchForm
+        form_class = PunchForm#(initial={'resident': Resident.objects.get(pk=2)})
         template_name = "resident_punch/punch_clock.html"
+
+
+def resident_punched(request, id):
+        resident = Resident.objects.get(pk=id)
+        form = PunchForm(initial={'resident': resident})
+        return render(request, 'resident_punch/punch_clock.html', {'resident': resident, 'form': form})
+
 
 
 class EditCounselor(UpdateView):
@@ -67,3 +74,8 @@ class DeleteResident(DeleteView):
         model = Resident
         template_name = "resident_punch/delete_resident.html"
         success_url = reverse_lazy('home')
+
+
+def FloorView(request, fl):
+        resident_floor = Resident.objects.filter(floor=fl)
+        return render(request, 'resident_punch/floor.html', {'fl': fl, 'resident_floor': resident_floor})

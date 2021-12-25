@@ -7,7 +7,7 @@
             {{resident.first_name}} {{resident.last_name}}
             </br>floor: {{resident.floor}}
             </br>counselor: {{resident.counselor}}
-            <a href = " {% url 'add_punch' %} " class="btn btn-secondary">Sign in or Out</a>
+            <a href = " {% url 'add_punch' resident.pk %} " class="btn btn-secondary">Sign in or Out</a>
         </h1>
 
         </br></br>

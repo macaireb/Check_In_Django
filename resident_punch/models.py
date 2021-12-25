@@ -5,9 +5,17 @@ from django.urls import reverse
 
 
 class Counselor(models.Model):
+
+    class Floors(models.IntegerChoices):
+        Women = 1
+        Four = 4
+        Six = 6
+        Seven = 7
+        Eight = 8
+
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
-    floor = models.IntegerField(default=4)
+    floor = models.IntegerField(choices=Floors.choices, default=Floors.Four)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -19,8 +27,7 @@ class Counselor(models.Model):
 class Resident(models.Model):
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
-    floor = models.IntegerField(default=4)
-    title_tag = models.CharField(max_length=100)
+    floor = models.IntegerField(choices=Counselor.Floors.choices, default=Counselor.Floors.Four)
     counselor = models.ForeignKey(Counselor, on_delete=models.CASCADE)
 
     def __str__(self):
