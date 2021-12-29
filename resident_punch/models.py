@@ -43,7 +43,7 @@ class Punch(models.Model):
     resident = models.ForeignKey(Resident, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.time
+        return str(self.time)
 
     def get_absolute_url(self):
         return reverse('home')

@@ -43,11 +43,17 @@ class AddPunch(CreateView):
         template_name = "resident_punch/punch_clock.html"
 
 
-def resident_punched(request, id):
-        resident = Resident.objects.get(pk=id)
-        form = PunchForm(initial={'resident': resident})
-        return render(request, 'resident_punch/punch_clock.html', {'resident': resident, 'form': form})
-
+def resident_punched(request, pu):
+        resident = Resident.objects.get(pk=pu)
+        residents = Resident.objects.all()
+        if request.method == 'POST':
+                form = PunchForm(request.POST)
+                if form.is_valid():
+                        form.save()
+                return render(request, 'resident_punch/home.html', {'object_list': residents})
+        else:
+                form_class = PunchForm(initial={'resident': resident})
+                return render(request, 'resident_punch/punch_clock.html', {'resident': resident, 'form': form_class})
 
 
 class EditCounselor(UpdateView):
