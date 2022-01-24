@@ -3,9 +3,22 @@
 List of clock ins and outs
 {% endblock %}
 {% block content %}
-    <ul>
-        {% for punch in object_list %}
-                <li> {{ punch.resident.first_name }} {{ punch.time }} </li>
-        {% endfor %}
-    </ul>
+    <h1>
+        {{resident.first_name}} {{resident.last_name}}
+        </br>Floor: {{resident.floor}}
+        </br>Counselor: {{resident.counselor}}
+        <a href = " {% url 'add_punch' resident.pk %} " class="btn btn-secondary">Sign in or Out</a>
+    </h1>
+    {% if punches %}
+        <ul>
+            {% for punch in punches %}
+            <li>{% if not punch.punch_in %} Out: {{punch.time}}  {% endif %}
+                {% if punch.punch_in %} In: {{punch.time}} {% endif %} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'edit_resident' resident.pk %}" class="btn btn-secondary">Edit</a>
+        <a href="{% url 'delete_resident' resident.pk %}" class="btn btn-secondary">Delete</a>
+    {% endif %}
 {% endblock %}

@@ -14,13 +14,21 @@ class Home(ListView):
         template_name = "resident_punch/home.html"
         #ordering = ['-id']
 
+
 class ResidentDetail(DetailView):
         model = Resident
         template_name = "resident_punch/resident_punch_detail.html"
 
+
 class PunchList(ListView):
         model = Punch
         template_name = "resident_punch/punch_list.html"
+
+
+def punches_view(request, ider):
+        current_resident = Resident.objects.get(pk=ider)
+        punches = Punch.objects.all().filter(resident=current_resident)
+        return render(request, 'resident_punch/punch_list.html', {'punches': punches, 'resident': current_resident})
 
 
 class AddCounselor(CreateView):

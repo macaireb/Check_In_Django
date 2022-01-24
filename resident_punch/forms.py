@@ -57,8 +57,12 @@ class PunchForm(forms.ModelForm):
     class Meta:
         model = Punch
         fields = ('punch_in', 'resident')
+        punch_choices = (
+            (True, "Punch in"),
+            (False, "Punch out")
+        )
         widgets = {
-            'punch_in': forms.CheckboxInput(),
+            'punch_in': forms.Select(choices=punch_choices, attrs={'class': 'form-control'}),
             'resident': forms.Select(attrs={'class': 'form-control'}),
         }
 
